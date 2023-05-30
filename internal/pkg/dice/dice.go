@@ -1,23 +1,43 @@
 package dice
 
+import "math/rand"
+
 type DieRollParameters struct {
-	Advantage        bool `default:false`
-	Disadvantage     bool `default:false`
-	CanCritical      bool `default:false`
-	CriticalTreshold int  `default:0`
+	advantage    bool `default:"false"`
+	disadvantage bool `default:"false"`
 }
 
 type IRollable interface {
 	Roll(params DieRollParameters) int
+	GetFaces() int
 }
 
 type Die struct {
-	Faces int
+	faces int
 }
 
 func (die Die) Roll(params DieRollParameters) int {
-	// TODO : Implement Roll Algorithm
-	return die.Faces
+	rollResult := rand.Intn(die.faces) + 1
+
+	if params.advantage == params.disadvantage {
+		return rollResult
+	}
+
+	secondRollResult := die.Roll(DieRollParameters{})
+
+	if params.advantage && secondRollResult > rollResult {
+		rollResult = secondRollResult
+	}
+
+	if params.disadvantage && secondRollResult < rollResult {
+		rollResult = secondRollResult
+	}
+
+	return rollResult
+}
+
+func (die Die) GetFaces() int {
+	return die.faces
 }
 
 var (
