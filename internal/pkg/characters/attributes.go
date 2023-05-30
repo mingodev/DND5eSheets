@@ -1,11 +1,12 @@
-package attributes
+package characters
 
 type Attribute struct {
-	Name string
+	Name  string
 	Score int
 }
 
 type Attributes struct {
+	Any          Attribute
 	Strength     Attribute
 	Dexterity    Attribute
 	Constitution Attribute
@@ -15,6 +16,7 @@ type Attributes struct {
 }
 
 var (
+	ANY          = Attribute{Name: "Any"}
 	STRENGTH     = Attribute{Name: "Strength"}
 	DEXTERITY    = Attribute{Name: "Dexterity"}
 	CONSTITUTION = Attribute{Name: "Constitution"}

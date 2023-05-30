@@ -25,11 +25,7 @@ func (die Die) Roll(params DieRollParameters) int {
 
 	secondRollResult := die.Roll(DieRollParameters{})
 
-	if params.advantage && secondRollResult > rollResult {
-		rollResult = secondRollResult
-	}
-
-	if params.disadvantage && secondRollResult < rollResult {
+	if (params.advantage && secondRollResult > rollResult) || (params.disadvantage && secondRollResult < rollResult) {
 		rollResult = secondRollResult
 	}
 
