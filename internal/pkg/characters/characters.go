@@ -6,6 +6,7 @@ import (
 
 type Character struct {
 	Id               int // TODO : Find a better data type for UserID while implementing OAuth
+	Name             string
 	Race             Race
 	Levels           []Level
 	HitPointsCurrent int
