@@ -4,6 +4,7 @@ volumes:
 services:
   db:
     image: mariadb
+    container_name: DND5eSheets_db
     restart: on-failure
     environment:
       MYSQL_ROOT_PASSWORD: root
